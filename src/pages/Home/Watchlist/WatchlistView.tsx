@@ -4,6 +4,8 @@ import Heading from '../../../components/Heading';
 import MovieCard from '../../../containers/MovieCard';
 import { IMovie } from '../../../models/Movie';
 
+import { observer } from 'mobx-react';
+ 
 import './style.css';
 
 export interface IProps {
@@ -24,4 +26,4 @@ const WatchlistView = ({ myMovies, isEmpty }: IProps) => (
   </div>
 );
 
-export default WatchlistView;
+export default observer(WatchlistView);

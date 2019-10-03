@@ -3,15 +3,21 @@ import { RouteComponentProps } from 'react-router';
 
 import MovieView from './MovieView';
 
+import { observer } from 'mobx-react';
+import { useStore } from '../../store';
+
 interface IRouteParams {
   id: string;
 }
 
 const Movie = ({ match }: RouteComponentProps<IRouteParams>) => {
-  useEffect(() => {}, [match.params.id]);
+  const store = useStore();
+  useEffect(() => {
+    store.movie.getMovie(match.params.id);
+  }, [match.params.id]);
   return (
-    <MovieView movie={null} isLoading={false} />
+    <MovieView movie={store.movie.data} isLoading={false} />
   );
 }
 
-export default Movie;
+export default observer(Movie);

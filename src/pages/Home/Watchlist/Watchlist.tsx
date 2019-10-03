@@ -1,8 +1,11 @@
 import React from 'react';
 import WatchlistView from './WatchlistView';
+import { useStore } from '../../../store';
+import { observer } from 'mobx-react';
 
 const Watchlist = () => {
-  return <WatchlistView myMovies={[]} isEmpty={true} />;
+  const store = useStore();
+  return <WatchlistView myMovies={store.myMovies.data} isEmpty={store.myMovies.isEmpty} />;
 }
 
-export default Watchlist;
+export default observer(Watchlist);
